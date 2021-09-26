@@ -6,17 +6,22 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   // 시작하는 js파일
-  entry: "./index.js",
+  entry: "./index.ts",
 
   // 번들한 파일에 대한 설정
-  output: {
-    // 번들한 파일 이름
-    filename: "main.js",
-    // 번들할 파일 경로
-    path: path.resolve(__dirname, "dist"),
-  },
+  // output: {
+  //   // 번들한 파일 이름
+  //   filename: "main.js",
+  //   // 번들할 파일 경로
+  //   path: path.resolve(__dirname, "dist"),
+  // },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
       {
         // 적용할 파일명 설정
         test: /\.s[ac]ss$/i,
