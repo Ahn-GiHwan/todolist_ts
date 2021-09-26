@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="할 일을 적고 체크해 보세요!" />
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="./todolist.png" />
+
+    <!-- fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+
+    <title>TODO LIST</title>
+  </head>
+  <body>
+    <div class="container">
+      <main>
+        <header>
+          <i class="fas fa-th-list"></i>
+          <h1 class="title"> TODO LIST </h1>
+        </header>
+        <div class="inpuDiv">
+          <input type="text" class="inputText" placeholder="리액트 공부하기" />
+          <button class="submit btn" aria-label="submit"
+            ><i class="fas fa-plus"></i
+          ></button>
+        </div>
+        <div class="doList">
+          <ul> </ul>
+        </div>
+      </main>
+      <div class="modal">
+        <main>
+          <div class="title">수정</div>
+          <input type="text" class="modifyInput" />
+          <button class="modifySubmit btn" aria-label="modify">수정하기</button>
+          <button class="exit btn" aria-label="exit"
+            ><i class="fas fa-times"></i
+          ></button>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

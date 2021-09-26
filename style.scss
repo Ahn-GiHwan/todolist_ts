@@ -1,0 +1,197 @@
+$w: #fff;
+$g: #6e6e6e;
+$mainBS: 0px 0px 27px 3px $w;
+$listBS: 0px 0px 8px 0px $g;
+$bg: skyblue;
+
+@mixin flexSetting($fd: row, $jc: center, $ai: center) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+@mixin absoluteSetting($t: auto, $r: auto, $b: auto, $l: auto) {
+  position: absolute;
+  top: $t;
+  right: $r;
+  bottom: $b;
+  left: $l;
+}
+
+@mixin inputSetting($fs: 16px, $bc: transparent) {
+  border: none;
+  outline: none;
+  font-size: $fs;
+  background-color: $bc;
+}
+
+@mixin btn($br: 10px) {
+  border: none;
+  border-radius: $br;
+  cursor: pointer;
+  margin: 0;
+  @content;
+}
+
+@font-face {
+  src: url("./static/KakaoOTFRegular.otf");
+  font-family: "kakao";
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "kakao";
+  user-select: none;
+}
+
+body {
+  font-family: "kakao";
+  background-color: $bg;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.container {
+  @include flexSetting();
+  @include absoluteSetting(0, 0, 0, 0);
+  background-color: $bg;
+}
+
+main {
+  @include flexSetting($fd: column, $jc: space-around);
+  height: 80%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: $mainBS;
+  border: 1px solid $w;
+}
+
+header {
+  flex: 2;
+  @include flexSetting;
+  .fas {
+    color: $w;
+    font-size: 25px;
+    padding: 10px;
+  }
+  .title {
+    text-align: center;
+    color: white;
+    font-weight: 900;
+    font-size: 40px;
+  }
+}
+
+.inpuDiv {
+  padding-bottom: 5px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid $w;
+  input {
+    @include inputSetting(15px, $bg);
+  }
+  .submit {
+    @include btn;
+    padding: 5px 10px;
+    background-color: $w;
+  }
+}
+
+.doList {
+  flex: 8;
+  width: 100%;
+  height: fit-content;
+  border-radius: 10px;
+  box-shadow: $listBS;
+  overflow: scroll;
+
+  .do {
+    @include flexSetting($jc: space-between);
+    padding: 10px;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $w;
+    }
+
+    .name {
+      display: block;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .done {
+      text-decoration: line-through;
+    }
+
+    .right {
+      border: 2px solid black;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    button {
+      background-color: transparent;
+      color: white;
+      padding: 5px 7px;
+    }
+
+    .check {
+      @include btn(5px 0 0 5px);
+      background-color: orchid;
+    }
+
+    .delete {
+      @include btn(0 5px 5px 0);
+      background-color: red;
+    }
+
+    .edit {
+      @include btn(0);
+      background-color: green;
+    }
+  }
+}
+
+.modal {
+  @include absoluteSetting(0, 0, 0, 0);
+  display: none;
+  background-color: rgb(0.1, 0.1, 0.1, 0.5);
+  main {
+    position: relative;
+    width: 50%;
+    height: 30%;
+    background-color: $w;
+
+    .title {
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .modifyInput {
+      width: 100%;
+      @include inputSetting(20px);
+      border-bottom: 3px solid black;
+    }
+
+    .exit {
+      @include absoluteSetting($t: 0, $r: 0);
+      @include btn(0 10px 0 0);
+      background-color: $bg;
+      color: white;
+      padding: 5px 10px;
+    }
+
+    .modifySubmit {
+      @include btn(3px);
+      width: 100%;
+      padding: 10px;
+      color: $w;
+      background-color: $bg;
+    }
+  }
+}
+
+.on {
+  @include flexSetting;
+}
