@@ -10,17 +10,17 @@ const modal: Element | null = document.querySelector(".modal");
 const modifyInput: HTMLInputElement | null =
   document.querySelector(".modifyInput");
 
-let idx = 0;
-let selectId = 0;
+let idx: number = 0;
+let selectId: number = 0;
 
-const inputReset = (inputEl: HTMLInputElement) => {
+const inputReset = (inputEl: HTMLInputElement): void => {
   if (inputEl !== null) {
     inputEl.value = "";
     inputEl.focus();
   }
 };
 
-const addDo = () => {
+const addDo = (): void => {
   if (doList !== null) {
     doList.children[0].innerHTML += `
     <li class="do" id=${idx++}>
@@ -40,13 +40,13 @@ const addDo = () => {
   }
 };
 
-const inputValidation = (inputEl: HTMLInputElement) => {
+const inputValidation = (inputEl: HTMLInputElement): boolean => {
   if (inputEl.value === "") return false;
   if (inputEl.value.replace(/ /g, "") === "") return false;
   return true;
 };
 
-const todoModify = () => {
+const todoModify = (): void => {
   const dos = document.querySelectorAll(".do");
 
   dos.forEach((item) => {
@@ -56,7 +56,7 @@ const todoModify = () => {
   });
 };
 
-window.addEventListener("click", (e: any) => {
+window.addEventListener("click", (e: any): void => {
   const targetEl: any = e.target;
   const elClassName: any = targetEl !== null && targetEl.className;
 
@@ -118,7 +118,7 @@ window.addEventListener("click", (e: any) => {
   }
 });
 
-window.addEventListener("keypress", (e) => {
+window.addEventListener("keypress", (e): void => {
   if (modal !== null && modifyInput !== null && input !== null) {
     if (e.key.includes("Enter")) {
       if (modal.className.includes("on")) {
@@ -140,6 +140,6 @@ window.addEventListener("keypress", (e) => {
   }
 });
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", (): void => {
   input !== null && input.focus();
 });
