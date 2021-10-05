@@ -10,19 +10,26 @@ const modal: Element | null = document.querySelector(".modal");
 const modifyInput: HTMLInputElement | null =
   document.querySelector(".modifyInput");
 
-let idx = 0;
-let selectId = 0;
+let idx: number = 0;
+let selectId: number = 0;
 
-const inputReset = (inputEl: HTMLInputElement) => {
+const inputReset = (inputEl: HTMLInputElement): void => {
   if (inputEl !== null) {
     inputEl.value = "";
     inputEl.focus();
   }
 };
 
-const addDo = () => {
+const addDo = (): void => {
   if (doList !== null) {
-    doList.children[0].innerHTML += `
+    doList.children[0].nodeName === "DIV"
+      ? (doList.innerHTML = doTemplate())
+      : (doList.innerHTML += doTemplate());
+  }
+};
+
+const doTemplate = (): string => {
+  return `
     <li class="do" id=${idx++}>
       <div class="left">
         <span class="name">${input !== null && input.value.trim()}</span>
@@ -37,16 +44,25 @@ const addDo = () => {
       </div>
     </li>
   `;
+};
+
+const emptyDoListContent = (): void => {
+  if (doList !== null) {
+    doList.innerHTML = `
+    <div class="empty">
+      <span>할 일을 적어주세요<span>
+    </div>
+  `;
   }
 };
 
-const inputValidation = (inputEl: HTMLInputElement) => {
+const inputValidation = (inputEl: HTMLInputElement): boolean => {
   if (inputEl.value === "") return false;
-  if (inputEl.value.replace(/ /g, "") === "") return false;
+  if (inputEl.value.match(/\s/g)) return false;
   return true;
 };
 
-const todoModify = () => {
+const todoModify = (): void => {
   const dos = document.querySelectorAll(".do");
 
   dos.forEach((item) => {
@@ -56,7 +72,7 @@ const todoModify = () => {
   });
 };
 
-window.addEventListener("click", (e: any) => {
+window.addEventListener("click", (e: any): void => {
   const targetEl: any = e.target;
   const elClassName: any = targetEl !== null && targetEl.className;
 
@@ -84,6 +100,7 @@ window.addEventListener("click", (e: any) => {
           icon: "success",
         });
       }
+      doList !== null && doList.children.length === 0 && emptyDoListContent();
     });
   }
 
@@ -108,7 +125,7 @@ window.addEventListener("click", (e: any) => {
       todoModify();
       modal !== null && modal.classList.remove("on");
     } else {
-      swal("내용을 입력해 주세요!");
+      swal("빈 문자, 공백(space)는 안됩니다!");
     }
   }
 
@@ -118,20 +135,25 @@ window.addEventListener("click", (e: any) => {
   }
 });
 
-window.addEventListener("keypress", (e) => {
+window.addEventListener("keypress", (e): void => {
+  const focusElment: Element | null = document.activeElement;
+  const focusClassName = focusElment !== null && focusElment.className;
+
   if (modal !== null && modifyInput !== null && input !== null) {
-    if (e.key.includes("Enter")) {
-      if (modal.className.includes("on")) {
-        if (inputValidation(modifyInput)) {
-          todoModify();
-          modal.classList.remove("on");
-        } else {
-          swal("내용을 입력해 주세요!");
-        }
-      } else {
+    if (focusClassName === "inputText") {
+      if (e.key.includes("Enter")) {
         if (inputValidation(input)) {
           addDo();
           inputReset(input);
+        } else {
+          swal("빈 문자, 공백(space)는 안됩니다!");
+        }
+      }
+    } else if (focusClassName === "modifyInput") {
+      if (e.key.includes("Enter")) {
+        if (inputValidation(modifyInput)) {
+          todoModify();
+          modal.classList.remove("on");
         } else {
           swal("빈 문자, 공백(space)는 안됩니다!");
         }
@@ -140,6 +162,7 @@ window.addEventListener("keypress", (e) => {
   }
 });
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", (): void => {
   input !== null && input.focus();
+  emptyDoListContent();
 });

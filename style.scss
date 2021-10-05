@@ -104,6 +104,14 @@ header {
   border-radius: 10px;
   box-shadow: $listBS;
   overflow: scroll;
+  position: relative;
+
+  .empty {
+    @include absoluteSetting(50%, auto, auto, 50%);
+    transform: translate(-50%, -50%);
+    @include flexSetting;
+    height: 100%;
+  }
 
   .do {
     @include flexSetting($jc: space-between);
