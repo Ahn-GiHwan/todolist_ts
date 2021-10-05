@@ -8,7 +8,7 @@
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/></a> &nbsp
 <img src="https://img.shields.io/badge/SCSS-CC6699?style=flat-square&logo=SASS&logoColor=white"/></a> &nbsp
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/></a> &nbsp
-<img src="https://img.shields.io/badge/Npm-CB3837?style=flat-square&logo=Npm&logoColor=white"/></a> &nbsp
+<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/></a> &nbsp
 <img src="https://img.shields.io/badge/Webpack-8DD6F9?style=flat-square&logo=webpack&logoColor=white"/></a> &nbsp
 <img src="https://img.shields.io/badge/Babel-F9DC3E?style=flat-square&logo=Babel&logoColor=white"/></a> &nbsp
 <img src="https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=Netlify&logoColor=white"/></a> &nbsp
@@ -28,10 +28,10 @@
 
 - TS를 통해 변수와 함수에 타입을 지정하여 개발자의 개발의도에 유도할 수 있게 개발
 
-### Npm
+### Node.js
 
-- npm을 통해 node환경에서 개발.
-- webpack에 필요한 모든 것, sweetalert, reset-css를 다운받아 개발.
+- node환경에서 개발.
+- npm을 통해 webpack에 필요한 모든 것(webpack, typescript, babel, loader, plugin...), sweetalert, reset-css를 다운받아 개발.
 
 ### Webpack
 
@@ -64,6 +64,20 @@
 <br>
 <hr>
 
-## vanillaJS version
+## VanillaJS Version
 
 > https://github.com/Ahn-GiHwan/todolist_vanillaJS
+
+<br>
+
+## React Version
+
+> https://github.com/Ahn-GiHwan/todolist_react
+
+<br>
+<hr>
+
+## v2.1.0
+
+- input에 focus가 false일 때 enter 클릭 시 keypress 이벤트 실행 됨 <br>-> input에 focus가 true여야만 keypress 이벤트 적용
+- list에 아무것도 없을 경우 '할 일을 적어주세요' 문구 출력
