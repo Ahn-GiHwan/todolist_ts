@@ -84,4 +84,4 @@
 
 ## v2.1.1
 
-- 수정 시 호출되는 모달창의 input placeholder값을 기존 todo값이 나오도록 수정
+- 수정 시 호출되는 모달창의 input placeholder값을 수정 할 todo값이 나오도록 수정
