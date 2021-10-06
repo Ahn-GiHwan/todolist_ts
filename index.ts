@@ -109,6 +109,8 @@ window.addEventListener("click", (e: any): void => {
       modal.classList.add("on");
       modifyInput.value =
         targetEl.closest("li").children[0].children[0].innerHTML;
+      modifyInput.placeholder =
+        targetEl.closest("li").children[0].children[0].innerHTML;
       selectId = Number(targetEl.closest("li").id);
       modifyInput.focus();
     }
